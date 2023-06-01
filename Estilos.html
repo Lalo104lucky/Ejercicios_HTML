@@ -4,7 +4,8 @@
     <title>Estilos</title>
     <style>
         p {
-            color: mediumspringgreen
+            color: rgb(250, 0, 0);
+            /*!important*/
         }
         .clasecita {
             color: navy;
@@ -12,11 +13,18 @@
         #miId {
             color: blueviolet;
         }
+        p span {
+            color: aqua;
+        }
     </style>
 </head>
 <body>
-    <p>Soy un parrafo</p>
+    <p style="color: brown;">Soy un parrafo</p>
     <p class="clasecita">Soy un parrafo x2</p>
     <p id="miId">Soy un parrafo x3</p>
+    <p>
+        <span>Hola</span>
+        <a href="">Link</a>
+    </p>
 </body>
 </html>
