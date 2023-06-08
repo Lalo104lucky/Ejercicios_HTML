@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llamadas</title>
+    <style>
+        #titulo1{
+            color: red;
+        }
+        .clase1{
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id = "titulo1">Titulo1</h1>
+    <p id="titulo1" class="clase1">Parrafo1</p>
+    <h2 class="clase1">Titulo2</h2>
+    <a class="clase1" href="">Link 1</a>
+    <span name="spancito">Span 1</span>
+    <span name="spancito">Span 2</span>
+    <h3 name="spancito">Titulo 3</h3>
+    <div class="class-div">Div 1</div>
+    <div id="id-div">Div 2</div>
+    <div name="name-div">Div 3</div>
+
+    <button onclick="crearElemento()">Crear Nuevo Boton</button>
+    <div id="contenedor"></div>
+    
+</body>
+<script>
+    var elementId = document.getElementById("titulo1");
+    console.log(elementId);
+    var elementClass = document.getElementsByClassName("clase1");
+    console.log(elementClass);
+    var elementName = document.getElementsByClassName("spancito");
+    console.log(elementName);
+    var elementTag = document.getElementsByTagName("div");
+    console.log(elementTag);
+
+    // QUERY SELECTOR
+    var qsId = document.querySelector("#titulo1");
+    console.log(qsId);
+    var qsClass = document.querySelectorAll(".clase1");
+    console.log(qsClass);
+
+    //////////////////////////////////////////////////
+    function crearElemento(){
+        var findcontenedor = document.getElementById("contenedor");
+    //console.log(findcontenedor);
+    findcontenedor.innerHTML = '<button>Nuevo Boton :)</buttton>';
+    }
+</script>
+</html>
