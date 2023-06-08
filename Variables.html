@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variables</title>
+</head>
+<body>
+    <button onclick="varSimples()">Variables Simples</button>
+    <button onclick="varString()">Variables String</button>
+    <button onclick="varDate()">Variables Date</button>
+    <script>
+        function varSimples() {
+            var x = 5;
+            var y= prompt("Numero a multiplicar por 5");
+            var result = x * y;
+            alert("El resultado de la muttiplicacion es " + result)
+        }
+        function varString() {
+            var name = new String();
+            name = prompt("Escribe la cadena");
+            //name = "Cesar"
+            alert("El tamaño de la cadena: " + name.length);
+            alert("El primer caracter es: " + name.charAt(0));
+            alert("El tamaño en mayúsculas es: " + name.toUpperCase());
+        }
+        function varDate() {
+            var tiempo = new Date();
+            var hora = tiempo.getHours();
+            var minuto = tiempo.getMinutes();
+
+            if (hora < 12 && hora > 0) {
+                alert("Guenos días... :), son las " + hora + ":" + minuto)
+            } else {
+                alert("Tardes ya... :3, son las " + hora + ":" + minuto)
+            }
+        }
+    </script>
+</body>
+</html>
