@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impresiones</title>
+</head>
+<body>
+    <button onclick="imprimirConsola()">Imprime en consola</button>
+    <button onclick="imprimirDialogo()">Imprime en C. de Dialogo</button>
+</body>
+<script type="text/javascript">
+    function imprimirConsola(){
+    console.log("Mi Primera Impresión :3")
+    document.write("Hola Mundo Write")
+    document.writeln("Holaaaa");
+    document.writeln("<button>Otro Boton</button>")
+    }
+    function imprimirDialogo(){
+        //alert("Esta es mi primera alerta :3");
+        //con prompt puedo obtener más información
+        var anionNac = prompt("Año de Nacimiento");
+        alert("En 2023, tú debes de tener "+(2023-anionNac)+" años.")
+    }
+</script>
+</html>
