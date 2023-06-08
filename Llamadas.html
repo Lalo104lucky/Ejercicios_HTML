@@ -27,9 +27,12 @@
     <div id="id-div">Div 2</div>
     <div name="name-div">Div 3</div>
 
-    <button onclick="crearElemento()">Crear Nuevo Boton</button>
-    <div id="contenedor"></div>
-    
+    <button onclick="crearElemento()" id="botoncito">Crear Nuevo Boton</button>
+    <div id="contenedor">Hola</div>
+
+    <p id="nombre">Diego Eduardo Jaimez Flores</p>
+    <button onclick="cambiarcolor('blue')">Azul</button>
+    <button onclick="cambiarcolor('red')">Rojo</button>
 </body>
 <script>
     var elementId = document.getElementById("titulo1");
@@ -51,7 +54,16 @@
     function crearElemento(){
         var findcontenedor = document.getElementById("contenedor");
     //console.log(findcontenedor);
-    findcontenedor.innerHTML = '<button>Nuevo Boton :)</buttton>';
+    findcontenedor.innerHTML += '<br><button onclick="modificarBoton">Nuevo Boton :)</buttton><br>';
+    }
+    function modificarBoton(){
+        var findBoton = document.getElementById("botoncito");
+        findBoton.innerHTML = 'Hola Mundo';
+    }
+    /////////////////////////////////////////////////////
+    function cambiarcolor(color){
+        var findNombre = document.getElementById("nombre");
+        findNombre.style.color = color;
     }
 </script>
 </html>
