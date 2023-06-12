@@ -32,7 +32,15 @@
 
     <p id="nombre">Diego Eduardo Jaimez Flores</p>
     <button onclick="cambiarcolor('blue')">Azul</button>
-    <button onclick="cambiarcolor('red')">Rojo</button>
+    <button onclick="cambiarcolor('red')">Rojo</button> <br> <br>
+
+    <table id="tabla" border="1">
+        <tr>
+            <td id="tabla1" onmouseover="cambiarUno()">UNO</td>
+        </tr>
+        <tr>
+            <td id="tabla2" onmouseover="cambiarDos()">DOS</td>
+    </table>
 </body>
 <script>
     var elementId = document.getElementById("titulo1");
@@ -64,6 +72,22 @@
     function cambiarcolor(color){
         var findNombre = document.getElementById("nombre");
         findNombre.style.color = color;
+    }
+
+    //////////////////////////////////////////////////////
+    function cambiarUno(){
+        alert('Cambiar uno...')
+    }
+    function cambiarDos(){
+        alert('Cambiar dos...')
+    }
+
+    var  tablita = document.getElementById("tabla");
+    tablita.addEventListener("click", modificarTexto, false);
+
+    function modificarTexto(){
+        var tablita2 = document.getElementById("tabla2");
+        tablita2.firstChild.nodeValue = "WEB"
     }
 </script>
 </html>
