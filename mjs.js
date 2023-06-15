@@ -87,3 +87,54 @@ function x(a,b,d){
 }
 
 let x2=(a,b,d)=> console.log(a+b+d);
+
+///////////////////////////ASYNC/////////////////////////
+
+const peliculas = [
+    {
+        id:1,
+        nombre:"Yo antes de ti",
+        duracion:120,
+        genero:"Romantica",
+        descripcion:"Esta en silla de suellas"
+    },
+    {
+        id:2,
+        nombre:"shrek",
+        duracion:120,
+        genero:"Animada",
+        descripcion:"Tiene capas :("
+    },
+    {
+        id:3,
+        nombre:"Moana",
+        duracion:90,
+        genero:"Animada",
+        descripcion:"Hay un gallo loco"
+    },
+    {
+        id:4,
+        nombre:"Harry Potter",
+        duracion:150,
+        genero:"Fantasia",
+        descripcion:"Le matarona sus jefes"
+    }
+]
+
+const obtenerPeliculas = ()=> {
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=> {
+            resolve(peliculas);
+        }, 3000);
+    });
+};
+
+//console.log(obtenerPeliculas());
+//obtenerPeliculas().then((peliculas)=>console.log(peliculas))
+
+async function listarPelis() {
+    const lista =  await obtenerPeliculas();
+    console.log(lista);
+}
+
+listarPelis(); 
