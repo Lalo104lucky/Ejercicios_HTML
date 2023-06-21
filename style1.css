@@ -1,0 +1,28 @@
+.galeria {
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.galeria img {
+    max-width: 30%;
+    max-height: 30%;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.boton {
+    padding: 1%;
+    background-color: violet;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}

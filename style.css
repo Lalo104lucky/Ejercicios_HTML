@@ -1,0 +1,31 @@
+.recuadro1 {
+    width: 320px;
+    height: 320px;
+    background-color: rgb(126, 126, 126);
+    transition: background-color 0.3s ease;
+  }
+  
+.recuadro1:hover {
+    background-color: rgb(0, 211, 238);
+  }
+
+  .recuadro2 {
+    width: 320px;
+    height: 320px;
+    background-color: rgb(0, 211, 238);
+    transition: background-color 0.3s ease;
+  }
+  
+.recuadro2:hover {
+    background-color: rgb(126, 126, 126);
+  }
+ 
+.tabla_centrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.espacio {
+  padding: 50px;
+}

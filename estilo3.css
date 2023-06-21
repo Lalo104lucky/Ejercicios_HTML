@@ -1,0 +1,18 @@
+.imagenes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .imagenes img {
+    width: 290px;
+    height: 175px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .transicion {
+    opacity: 1;
+  }
+  
