@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -34,13 +36,30 @@
                             <th scope="col">Apellido</th>
                             <th scope="col">Usuario</th>
                             <th scope="col">Rol</th>
+                            <th scope="col">Edad</th>
                             <th scope="col">Fecha Nacimiento</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">Teléfono</th>
+                            <th scope="col">Telefono</th>
                             <th scope="col">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${personList}" var="person" varStatus="status">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td><a>Editar</a><a>Eliminar</a></td>
+                            </tr>
+                        </c:forEach>
                         <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
@@ -52,20 +71,21 @@
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr>
+                            <td>Mark</td>
+                            <td><a>Editar</a><a>Eliminar</a></td>
                         <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Mark</td>
+                            <td><a>Editar</a><a>Eliminar</a></td>
                         </tbody>
                     </table>
                 </div>
