@@ -10,7 +10,7 @@
 <body>
 <%@include file="../../layouts/navbar.jsp"%>
 
-    <h1>Index de Personas</h1>
+<h1>Index de Personas</h1>
 
 <div class="container mt-5">
     <div class="row">
@@ -20,8 +20,8 @@
                     <div class="row">
                         <div class="col-6"> PERSONAS</div>
                         <div class="col-6 text-end">
-                            <a href="#" class="btn btn-outline-success btn-sm"
-                               >Registrar Personas</a>
+                            <a href="createPerson.jsp" class="btn btn-outline-success btn-sm"
+                            >Registrar Personas</a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,6 @@
                             <th scope="col">#</th>
                             <th scope="col">Perfil</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
                             <th scope="col">Apellido</th>
                             <th scope="col">Usuario</th>
                             <th scope="col">Rol</th>
@@ -46,50 +45,24 @@
                         <tbody>
                         <c:forEach items="${personList}" var="person" varStatus="status">
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
+                                <th scope="row"><c:out value="${status.count}"></c:out> </th>
+                                <td><img src="data:image/jpg;base64, ${person.image}" style="height: 50px; width: 50px" class="rounded-circle"></td>
+                                <td><c:out value="${person.name}"></c:out></td>
+                                <td><c:out value="${person.lastname}"></c:out></td>
+                                <td><c:out value="${person.username}"></c:out></td>
+                                <td><c:out value="${person.role}"></c:out></td>
+                                <td><c:out value="${person.age}"></c:out></td>
+                                <td><fmt:formatDate value="${person.birthday}" pattern="dd/mm/yyyy"></fmt:formatDate></td>
+                                <td><c:out value="${person.email}"></c:out></td>
+                                <td><c:out value="${person.phone}"></c:out></td>
                                 <td><a>Editar</a><a>Eliminar</a></td>
                             </tr>
                         </c:forEach>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td><a>Editar</a><a>Eliminar</a></td>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td><a>Editar</a><a>Eliminar</a></td>
+
                         </tbody>
                     </table>
                 </div>
-                </div>
+            </div>
 
         </div>
     </div>

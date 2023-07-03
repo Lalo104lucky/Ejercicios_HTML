@@ -34,6 +34,9 @@ public class ServletPerson extends HttpServlet {
                 request.setAttribute("personList", personList);
                 redirect = "/view/person/indexPerson.jsp";
             break;
+            case "/createPersons":
+                redirect = "/view/person/createPerson.jsp";
+
             default:
                 redirect = "/getPersons";
         }

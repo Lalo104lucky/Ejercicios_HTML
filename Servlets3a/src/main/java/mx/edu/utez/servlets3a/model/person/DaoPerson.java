@@ -17,8 +17,7 @@ public class DaoPerson {
     private static PreparedStatement pstm;
     private static ResultSet rs;
 
-    private static final String GET_PERSONS = "SELECT * FROM person" +
-            "JOIN user ON person.id=user.person";
+    private static final String GET_PERSONS = "SELECT * FROM person JOIN user ON person.id=user.person";
 
     public static List<BeanPerson> findPersons(){
         List<BeanPerson> personList = new LinkedList<>();
@@ -28,6 +27,7 @@ public class DaoPerson {
             pstm = conn.prepareStatement(GET_PERSONS);
             rs = pstm.executeQuery();
             while (rs.next()){
+                person = new BeanPerson();
                 person.setId(rs.getLong("person.id"));
                 person.setName(rs.getString("name"));
                 person.setLastname(rs.getString("lastname"));
