@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-6"> PERSONAS</div>
                         <div class="col-6 text-end">
-                            <a href="createPerson.jsp" class="btn btn-outline-success btn-sm"
+                            <a href="createPersons" class="btn btn-outline-success btn-sm"
                             >Registrar Personas</a>
                         </div>
                     </div>

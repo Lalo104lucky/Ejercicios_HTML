@@ -2,6 +2,7 @@ package mx.edu.utez.servlets3a.model.person;
 
 import mx.edu.utez.servlets3a.utils.MySQLConnection;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,6 +54,10 @@ public class DaoPerson {
             CloseConnections();
         }
         return personList;
+    }
+
+    public static boolean savePerson(BeanPerson person, InputStream imageBytes){
+        return true;
     }
 
     public static void CloseConnections(){
