@@ -3,22 +3,23 @@ package mx.edu.utez.servlets3a.model.person;
 import mx.edu.utez.servlets3a.utils.MySQLConnection;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class DaoPerson {
     private static Connection conn;
     private static PreparedStatement pstm;
     private static ResultSet rs;
 
     private static final String GET_PERSONS = "SELECT * FROM person JOIN user ON person.id=user.person";
+
+    private static final String INSERT_PERSON="INSERT INTO person (name, lastname, age, email, phone, birthday, image)" +
+            "VALUES (?,?,?,?,?,?,?)";
+    private static final String INSERT_USER="INSERT INTO user (username, password, role, person)" +
+            "VALUES (?,?,?,?)";
 
     public static List<BeanPerson> findPersons(){
         List<BeanPerson> personList = new LinkedList<>();
@@ -51,16 +52,62 @@ public class DaoPerson {
             Logger.getLogger(DaoPerson.class.getName())
                     .log(Level.SEVERE, "Error en findPersons -> ",e);
         } finally {
-            CloseConnections();
+            closeConnection();
         }
         return personList;
     }
 
     public static boolean savePerson(BeanPerson person, InputStream imageBytes){
-        return true;
+        try {
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(INSERT_PERSON, Statement.RETURN_GENERATED_KEYS);
+            pstm.setString(1,person.getName());
+            pstm.setString(2,person.getLastname());
+            pstm.setInt(3,person.getAge());
+            pstm.setString(4,person.getEmail());
+            pstm.setString(5,person.getPhone());
+            pstm.setDate(6,new Date(person.getBirthday().getTime()));
+            pstm.setBlob(7, imageBytes);
+            if (pstm.executeUpdate()==1){
+                ResultSet lastIdPerson = pstm.getGeneratedKeys();
+                if (lastIdPerson.next()){
+                    return saveUser(person.getUsername(), person.getPassword(), person.getRole(), lastIdPerson.getLong(1));
+                }else {
+                    return false;
+                }
+            }else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(DaoPerson.class.getName())
+                    .log(Level.SEVERE, "Error savePerson -> ", e);
+            return false;
+        } finally {
+            closeConnection();
+        }
+    }
+    public static boolean saveUser (String username, String password, String role, Long person){
+        try {
+            pstm = conn.prepareStatement(INSERT_USER);
+            pstm.setString(1, username);
+            pstm.setString(2, password);
+            pstm.setString(3, role);
+            pstm.setLong(4,person);
+
+            if (pstm.executeUpdate()==1){
+                return true;
+            }else {
+                return false;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoPerson.class.getName())
+                    .log(Level.SEVERE, "Error saveUser -> ", e);
+            return false;
+        }
     }
 
-    public static void CloseConnections(){
+    public static void closeConnection(){
         try {
             if (conn!=null){
                 conn.close();
@@ -76,3 +123,4 @@ public class DaoPerson {
         }
     }
 }
+
