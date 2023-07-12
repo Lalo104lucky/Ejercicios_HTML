@@ -20,6 +20,7 @@ public class DaoPerson {
             "VALUES (?,?,?,?,?,?,?)";
     private static final String INSERT_USER="INSERT INTO user (username, password, role, person)" +
             "VALUES (?,?,?,?)";
+    private static final String GET_PERSON = "SELECT * FROM person WHERE id=?";
 
     public static List<BeanPerson> findPersons(){
         List<BeanPerson> personList = new LinkedList<>();
@@ -105,6 +106,35 @@ public class DaoPerson {
                     .log(Level.SEVERE, "Error saveUser -> ", e);
             return false;
         }
+    }
+
+    public static BeanPerson findPerson(Long id){
+        BeanPerson person = null;
+        try{
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(GET_PERSON);
+            pstm.setLong(1,id);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                person = new BeanPerson();
+                person.setId(rs.getLong("id"));
+                person.setName(rs.getString("name"));
+                person.setLastname(rs.getString("lastname"));
+                person.setAge(rs.getInt("age"));
+                person.setEmail(rs.getString("email"));
+                person.setPhone(rs.getString("phone"));
+                return person;
+            } else {
+                return null;
+            }
+        }catch (SQLException e) {
+            Logger.getLogger(DaoPerson.class.getName())
+                    .log(Level.SEVERE, "Error en findPerson -> ", e);
+            return null;
+        } finally {
+            closeConnection();
+        }
+
     }
 
     public static void closeConnection(){

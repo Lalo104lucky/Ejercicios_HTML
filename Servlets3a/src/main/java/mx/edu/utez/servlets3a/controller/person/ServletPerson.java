@@ -30,7 +30,7 @@ import java.util.List;
 @MultipartConfig (maxFileSize = 1024 * 1024 * 100)
 public class ServletPerson extends HttpServlet {
     private BeanPerson person;
-    private String action, name, lastname, email, age, phone, birthday, username, password, role;
+    private String id, action, name, lastname, email, age, phone, birthday, username, password, role;
     private Part image;
     private String redirect = "/getPersons";
     @Override
@@ -47,9 +47,22 @@ public class ServletPerson extends HttpServlet {
             case "/createPerson":
                 redirect = "/view/person/createPerson.jsp";
                 break;
+            case "/updatePerson":
+                id = request.getParameter("id");
+                person = new DaoPerson().findPerson(id!=null ? Long.parseLong(id):0);
+                if(person!=null){
+                    request.setAttribute("person", person);
+                }else {
+                    redirect="/getPersons?result="+true+"&message="+
+                            URLEncoder.encode("¡No se encontró recurso!", StandardCharsets.UTF_8);
+                }
+
+                redirect = "/view/person/updatePerson.jsp";
+                break;
             default:
                 redirect = "/getPersons";
                 break;
+
         }
         request.getRequestDispatcher(redirect).forward(request, response);
     }
