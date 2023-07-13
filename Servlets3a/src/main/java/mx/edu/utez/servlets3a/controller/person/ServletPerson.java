@@ -24,7 +24,8 @@ import java.util.List;
         "/createPerson",
         "/savePerson",
         "/deletePerson",
-        "/updatePerson"
+        "/updatePerson",
+        "/actualizePerson"
 }
 )
 @MultipartConfig (maxFileSize = 1024 * 1024 * 100)
@@ -59,6 +60,7 @@ public class ServletPerson extends HttpServlet {
 
                 redirect = "/view/person/updatePerson.jsp";
                 break;
+
             default:
                 redirect = "/getPersons";
                 break;
@@ -111,6 +113,35 @@ public class ServletPerson extends HttpServlet {
                     e.printStackTrace();
                 }
 
+                break;
+
+            case "/actualizePerson":
+                name=request.getParameter("name");
+                lastname=request.getParameter("lastname");
+                age=request.getParameter("age");
+                phone=request.getParameter("phone");
+                email=request.getParameter("email");
+                id=request.getParameter("id");
+
+                try {
+                    person = new BeanPerson();
+                    person.setName(name);
+                    person.setLastname(lastname);
+                    person.setAge(Integer.parseInt(age));
+                    person.setPhone(phone);
+                    person.setEmail(email);
+                    person.setId(Long.parseLong(id));
+
+                    boolean result = new DaoPerson().updatePerson(person);
+                    if (result){
+                        redirect="/getPersons?result="+true+"&message="+
+                                URLEncoder.encode("Persona modificada correctamente", StandardCharsets.UTF_8);
+                    }else{
+                        URLEncoder.encode("¡Error al Modificar Persona!", StandardCharsets.UTF_8);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             default:
                 redirect="/getPersons";

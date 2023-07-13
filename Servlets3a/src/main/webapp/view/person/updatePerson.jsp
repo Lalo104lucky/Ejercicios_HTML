@@ -15,7 +15,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <form name="registerPerson" class="needs-validation" novalidate action="#" method="post">
+              <form name="registerPerson" class="needs-validation" novalidate action="actualizePerson" method="post">
                 <div class="form-group mb-3">
                   <div class="row">
                     <div class="col">

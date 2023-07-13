@@ -21,6 +21,7 @@ public class DaoPerson {
     private static final String INSERT_USER="INSERT INTO user (username, password, role, person)" +
             "VALUES (?,?,?,?)";
     private static final String GET_PERSON = "SELECT * FROM person WHERE id=?";
+    private static final String UPDATE_PERSON = "UPDATE person SET name=?, lastname=?, age=?, phone=?, email=? WHERE id=?";
 
     public static List<BeanPerson> findPersons(){
         List<BeanPerson> personList = new LinkedList<>();
@@ -135,6 +136,31 @@ public class DaoPerson {
             closeConnection();
         }
 
+    }
+
+    public static boolean updatePerson(BeanPerson person){
+        try {
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(UPDATE_PERSON); //Lo de return generated keys solo cuando se regsitre
+            pstm.setString(1,person.getName());
+            pstm.setString(2,person.getLastname());
+            pstm.setInt(3,person.getAge());
+            pstm.setString(4,person.getPhone());
+            pstm.setString(5,person.getEmail());
+            pstm.setLong(6, person.getId());
+            if (pstm.executeUpdate()==1){
+                return true;
+            }else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(DaoPerson.class.getName())
+                    .log(Level.SEVERE, "Error updatePerson -> ", e);
+            return false;
+        } finally {
+            closeConnection();
+        }
     }
 
     public static void closeConnection(){

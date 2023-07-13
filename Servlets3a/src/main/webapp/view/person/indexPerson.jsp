@@ -5,10 +5,10 @@
 <html>
 <head>
     <title>Gestión de Personas</title>
-    <%@include file="../../layouts/head.jsp"%>
+    <%@include file="../../layouts/head.jsp" %>
 </head>
 <body>
-<%@include file="../../layouts/navbar.jsp"%>
+<%@include file="../../layouts/navbar.jsp" %>
 
 <h1>Index de Personas</h1>
 
@@ -57,14 +57,16 @@
                         <tbody>
                         <c:forEach items="${personList}" var="person" varStatus="status">
                             <tr>
-                                <th scope="row"><c:out value="${status.count}"></c:out> </th>
-                                <td><img src="data:image/jpg;base64, ${person.image}" style="height: 50px; width: 50px" class="rounded-circle"></td>
+                                <th scope="row"><c:out value="${status.count}"></c:out></th>
+                                <td><img src="data:image/jpg;base64, ${person.image}" style="height: 50px; width: 50px"
+                                         class="rounded-circle"></td>
                                 <td><c:out value="${person.name}"></c:out></td>
                                 <td><c:out value="${person.lastname}"></c:out></td>
                                 <td><c:out value="${person.username}"></c:out></td>
                                 <td><c:out value="${person.role}"></c:out></td>
                                 <td><c:out value="${person.age}"></c:out></td>
-                                <td><fmt:formatDate value="${person.birthday}" pattern="dd/mm/yyyy"></fmt:formatDate></td>
+                                <td><fmt:formatDate value="${person.birthday}"
+                                                    pattern="dd/mm/yyyy"></fmt:formatDate></td>
                                 <td><c:out value="${person.email}"></c:out></td>
                                 <td><c:out value="${person.phone}"></c:out></td>
                                 <td>
@@ -98,6 +100,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="deletePerson" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
@@ -119,7 +122,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>
