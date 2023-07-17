@@ -22,6 +22,7 @@ public class DaoPerson {
             "VALUES (?,?,?,?)";
     private static final String GET_PERSON = "SELECT * FROM person WHERE id=?";
     private static final String UPDATE_PERSON = "UPDATE person SET name=?, lastname=?, age=?, phone=?, email=? WHERE id=?";
+    private static final String DELETE_PERSON = "DELETE FROM PERSON WHERE id=?";
 
     public static List<BeanPerson> findPersons(){
         List<BeanPerson> personList = new LinkedList<>();
@@ -83,7 +84,7 @@ public class DaoPerson {
 
         } catch (SQLException e) {
             Logger.getLogger(DaoPerson.class.getName())
-                    .log(Level.SEVERE, "Error savePerson -> ", e);
+                    .log(Level.SEVERE, "Error en savePerson -> ", e);
             return false;
         } finally {
             closeConnection();
@@ -156,7 +157,27 @@ public class DaoPerson {
 
         } catch (SQLException e) {
             Logger.getLogger(DaoPerson.class.getName())
-                    .log(Level.SEVERE, "Error updatePerson -> ", e);
+                    .log(Level.SEVERE, "Error en updatePerson -> ", e);
+            return false;
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public static boolean deletePerson(Long id){
+        try {
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(DELETE_PERSON); //Lo de return generated keys solo cuando se regsitre
+            pstm.setLong(1, id);
+            if (pstm.executeUpdate()==1){
+                return true;
+            }else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(DaoPerson.class.getName())
+                    .log(Level.SEVERE, "Error en deletePerson -> ", e);
             return false;
         } finally {
             closeConnection();

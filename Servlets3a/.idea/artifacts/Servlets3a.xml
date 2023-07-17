@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Servlets3a">
+    <output-path>$PROJECT_DIR$/out/artifacts/Servlets3a</output-path>
+    <root id="root">
+      <element id="archive" name="Servlets3a.jar">
+        <element id="module-output" name="Servlets3a" />
+      </element>
+    </root>
+  </artifact>
+</component>

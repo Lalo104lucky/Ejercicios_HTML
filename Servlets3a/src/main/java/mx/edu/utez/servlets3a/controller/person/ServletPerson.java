@@ -143,6 +143,21 @@ public class ServletPerson extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case "/deletePerson":
+                id=request.getParameter("id");
+                try {
+                    boolean result = new DaoPerson().deletePerson(Long.parseLong(id));
+                    if (result){
+                        redirect="/getPersons?result="+true+"&message="+
+                                URLEncoder.encode("Persona eliminada correctamente", StandardCharsets.UTF_8);
+                    }else{
+                        redirect="/getPersons?result="+false+"&message="+
+                                URLEncoder.encode("¡Error al eliminar persona!", StandardCharsets.UTF_8);
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 redirect="/getPersons";
 

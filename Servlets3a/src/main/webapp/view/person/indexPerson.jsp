@@ -80,7 +80,7 @@
                                     </a>
                                     <a class="btn btn-danger btn-small"
                                        data-bs-toggle="modal"
-                                       data-bs-target="#deletePerson"
+                                       data-bs-target="#deletePerson-${person.id}"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -100,19 +100,20 @@
         </div>
     </div>
 </div>
+<c:forEach items="${personList}" var="person" varStatus="status">
 
 <div class="modal fade" id="deletePerson" tabindex="-1" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="#">
-                <input type="hidden" name="idP" id="idP"/>
+            <form method="post" action="deletePerson">
+                <input type="hidden" name="id" id="id" value="${person.id}"/>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Deseas eliminar a:
+                    ¿Deseas eliminar a: ${person.name} ${person.lastname}?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -122,6 +123,7 @@
         </div>
     </div>
 </div>
+</c:forEach>
 <jsp:include page="../../layouts/footer.jsp"/>
 </body>
 </html>
